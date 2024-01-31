@@ -17,7 +17,7 @@
         3. choose_Difficulty()
         4. choose_subject()
         5. submit_quiz()
-        6. get_Hint()
+        **--6. get_Hint()--**
         7. show_Leaderboard()
         8. invalid_CMD()
 
@@ -40,9 +40,9 @@
         5. invalid_CMD()
             a. No argument
 
-        6. get_Hint()
+        **--6. get_Hint()
             a. subject
-            b. difficulty (easy, average, hard)
+            b. difficulty (easy, average, hard)--**
         
         7. choose_subject()
             a. subject

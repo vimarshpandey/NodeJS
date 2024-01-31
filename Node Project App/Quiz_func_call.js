@@ -8,23 +8,22 @@ var command = argv._[0];
 
 if(command === "start")
 {
-    console.log("               -----------------------------------------------------------------------------------------------------------------               \n");
-    console.log("                                                           **Welcome to Arcade Quiz**\n");
-    console.log("               -----------------------------------------------------------------------------------------------------------------               \n\n");
-    
     const rl = readline.createInterface({ input, output });
 
-    rl.question('                                                       ---- Please Enter your name ----\n', (candidateName) => {
-        data.startQuiz(candidateName);
-        rl.close();
-      });
+    data.welcomeMSG();
 
-      
-}
-
-else if(command === "stop")
-{
-    data.stopQuiz();
+    rl.question('                                                        ---- Please Enter your name ----\n', (candidateName) => {
+        if (candidateName.trim() === 'stop')
+        {
+          data.stopQuiz();
+          rl.close();
+        }
+        else
+        {
+          data.startQuiz(candidateName);
+          data.chooseSubject(rl);
+        }
+    });
 }
 
 else
