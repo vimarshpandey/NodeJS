@@ -24,28 +24,57 @@
 -->  Function arguments :-
 
         1. start_Quiz_App()
-            a) yourName
+            a. yourName
 
         2. stop_Quiz_App()
-            a) No argument
+            a. No argument
 
         3. choose_Difficulty()
-            a) difficulty (easy, average, hard)
+            a. difficulty (easy, average, hard)
 
         4. submit_quiz()
-            a) result
-            b) fileName
-            c) suggession
+            a. result
+            b. fileName
+            c. suggession
 
         5. invalid_CMD()
-            a) No argument
+            a. No argument
 
         6. get_Hint()
-            a) subject
-            b) difficulty (easy, average, hard)
+            a. subject
+            b. difficulty (easy, average, hard)
         
         7. choose_subject()
-            a) subject
+            a. subject
         
         8. show_Leaderboard()
-            a) leaderboard
+            a. leaderboard
+
+
+
+
+
+            if(command1 === "GK")
+    {
+        data.gkQuiz();
+    }
+
+    else if(command1 === "maths")
+    {
+        data.mathsQuiz();
+    }
+
+    else if(command1 === "java")
+    {
+        data.javaQuiz();
+    }
+
+    else if(command1 === "sql")
+    {
+        data.sqlQuiz();
+    }
+
+    else
+    {
+        data.invalidCMD();
+    }

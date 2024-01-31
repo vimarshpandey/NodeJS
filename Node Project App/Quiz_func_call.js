@@ -2,53 +2,20 @@ const yargs = require('yargs');
 const data = require('./Quiz_func_def.js');
 
 const argv = yargs.argv;
-
 var command = argv._[0];
-
-console.log("Command: ", command);
 
 if(command === "start")
 {
-    data.startQuiz();
+    console.log("               -----------------------------------------------------------------------------------------------------------------               \n");
+    console.log("                                                           **Welcome to Arcade Quiz**\n");
+    console.log("               -----------------------------------------------------------------------------------------------------------------               \n\n");
+    console.log("                                                        ---- Please Enter Your name ----\n");
+    
+    var candidateName = argv._[1];
 
-    const argv = yargs.argv;
-
-    var command1 = argv._[0];
-
-    if(command1 === "GK")
-    {
-        data.gkQuiz();
-    }
-
-    else if(command1 === "maths")
-    {
-        data.mathsQuiz();
-    }
-
-    else if(command1 === "analytics")
-    {
-        data.geoQuiz();
-    }
-
-    else if(command1 === "java")
-    {
-        data.javaQuiz();
-    }
-
-    else if(command1 === "sql")
-    {
-        data.sqlQuiz();
-    }
-
-    else if(command1 === "english")
-    {
-        data.Quiz();
-    }
-
-    else
-    {
-        data.invalidCMD();
-    }
+    data.startQuiz(candidateName);
+    
+    
 }
 
 else if(command === "stop")
@@ -58,5 +25,6 @@ else if(command === "stop")
 
 else
 {
+    console.log("\n\n             ---- If you want to start or stop the Arcade Quiz App the please give the user input as start or stop respectively ----\n\n")
     data.invalidCMD();
 }

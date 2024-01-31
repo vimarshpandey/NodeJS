@@ -1,9 +1,6 @@
-function startQuiz()
+function startQuiz(candidateName)
 {
-    console.log("               -----------------------------------------------------------------------------------------------------------------               \n");
-    console.log("                                                           **Welcome to Arcade Quiz**\n");
-    console.log("               -----------------------------------------------------------------------------------------------------------------               \n\n");
-    console.log("                                          Please enter the subject in which you want to take quiz\n");
+    console.log("                                 Hello ",candidateName ,", Please enter the subject in which you want to take quiz\n");
 }
 
 function stopQuiz()
