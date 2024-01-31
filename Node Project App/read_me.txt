@@ -78,3 +78,54 @@
     {
         data.invalidCMD();
     }
+
+
+
+    const yargs = require('yargs');
+const data = require('./Quiz_func_def.js');
+
+console.log("\n\n             ---- If you want to start or stop the Arcade Quiz App the please give the user input as start or stop respectively ----\n\n")
+data.invalidCMD();
+
+// Create a command using yargs
+yargs.command({
+  command: 'start',
+  describe: 'Start the program Arcade Quiz Application',
+  handler: () => {
+    // Run a loop until the user enters a candidate name
+    const readline = require('readline').createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+
+    console.log("               -----------------------------------------------------------------------------------------------------------------               \n");
+    console.log("                                                           **Welcome to Arcade Quiz**\n");
+    console.log("               -----------------------------------------------------------------------------------------------------------------               \n\n");
+
+    function runProgram()
+    {
+        readline.question('> Enter candidate name: ', (candidateName) => {
+        if (candidateName.toLowerCase() === 'exit')
+        {
+          data.stopQuiz();
+          readline.close();
+        }
+        else if (candidateName.trim() === '')
+        {
+          console.log('Please enter a valid candidate name.');
+          runProgram();
+        }
+        else
+        {
+          data.startQuiz();
+          readline.close();
+        }
+      });
+    }
+
+    runProgram(); // Start the program
+  }
+});
+
+// Parse the command-line arguments
+yargs.parse();

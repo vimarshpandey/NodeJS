@@ -1,6 +1,6 @@
 function startQuiz(candidateName)
 {
-    console.log("                                 Hello ",candidateName ,", Please enter the subject in which you want to take quiz\n");
+    console.log("                                 Hello ",candidateName,", Please enter the subject in which you want to take quiz\n");
 }
 
 function stopQuiz()

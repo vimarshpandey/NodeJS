@@ -1,4 +1,6 @@
 const yargs = require('yargs');
+const readline = require('node:readline');
+const { stdin: input, stdout: output } = require('node:process');
 const data = require('./Quiz_func_def.js');
 
 const argv = yargs.argv;
@@ -9,13 +11,15 @@ if(command === "start")
     console.log("               -----------------------------------------------------------------------------------------------------------------               \n");
     console.log("                                                           **Welcome to Arcade Quiz**\n");
     console.log("               -----------------------------------------------------------------------------------------------------------------               \n\n");
-    console.log("                                                        ---- Please Enter Your name ----\n");
     
-    var candidateName = argv._[1];
+    const rl = readline.createInterface({ input, output });
 
-    data.startQuiz(candidateName);
-    
-    
+    rl.question('                                                       ---- Please Enter your name ----\n', (candidateName) => {
+        data.startQuiz(candidateName);
+        rl.close();
+      });
+
+      
 }
 
 else if(command === "stop")
