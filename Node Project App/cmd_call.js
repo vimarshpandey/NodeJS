@@ -12,8 +12,8 @@ console.log('yargs', argv);
 if (command === 'add')
 {
     data.addData(argv.regn, argv.rno);
-
 }
+
 else
 {
     console.log('command not recognized');

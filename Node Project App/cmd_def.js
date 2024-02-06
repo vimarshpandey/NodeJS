@@ -22,7 +22,9 @@ var addData=(regn,rno) =>
     }
 
     else 
-    console.log("Duplicate Regn not allowed");
+    {
+        console.log("Duplicate Regn not allowed");
+    }
 };
 
 module.exports = {addData};
