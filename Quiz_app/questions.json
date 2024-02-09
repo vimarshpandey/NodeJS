@@ -1,17 +1,17 @@
 [
     {
-        "question": "What is the capital of India?",
-        "options": ["Tokyo", "New Delhi", "Berlin", "Paris"],
-        "correctAns": "New Delhi"
+        "question": "\n\n                                                            What is the capital of India?\n",
+        "options": ["                                                                      1. Tokyo", "                                                                      2. New Delhi", "                                                                      3. Berlin", "                                                                      4. Paris\n\n"],
+        "correctAns": 2
     },
     {
-        "question": "What is the capital of France?",
-        "options": ["Tokyo", "New Delhi", "Paris", "Paris"],
-        "correctAns": "Paris"
+        "question": "\n\n                                                            What is the capital of France?\n",
+        "options": ["                                                                      1. Tokyo", "                                                                      2. New Delhi", "                                                                      3. Berlin", "                                                                      4. Paris\n\n"],
+        "correctAns": 4
     },
     {
-        "question": "Which planet is known as red planet?",
-        "options": ["Mars", "Jupiter", "Saturn", "Earth"],
-        "correctAns": "Mars"
+        "question": "\n\n                                                         What is the capital of United States?\n",
+        "options": ["                                                                   1. Washington D.C.", "                                                                   2. New Delhi", "                                                                   3. Berlin", "                                                                   4. Paris\n\n"],
+        "correctAns": 1
     }
 ]
