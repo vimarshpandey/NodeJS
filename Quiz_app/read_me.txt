@@ -48,84 +48,60 @@
             a. subject
         
         8. show_Leaderboard()
-            a. leaderboard
+            a. leaderboard (number of persons on leaderboard)
+
+        9. getAnswer()
+            a. question number
+
+        --> loadnoats(one arguments)
+
+        --> subject attribute in json file for getting subject wise marks
+
+        --> Add question
+
+        --> email
+
+        --name=vimarsh --ans1=2 --ans2=4 --ans3=1 --ans4=3 --ans5=3 --ans6=1 --ans7=2 --ans8=4 --ans9=3 --ans10=1
 
 
 
 
 
-            if(command1 === "GK")
+
+
+
+
+
+
+
+
+
+
+
+
+var addNameScore=(name) =>
+{
+    var name_data= [];
+    var data_item_name = {name};
+
+    try
     {
-        data.gkQuiz();
+        var dataString = fs.readFileSync('quiz_app_data.json');
+        name_data = JSON.parse(dataString); 
     }
 
-    else if(command1 === "maths")
+    catch (e){}
+
+    var duplicatedata = name_data.filter((data_item_name)=> data_item_name.name === name );
+
+    if(duplicatedata.length === 0 )
     {
-        data.mathsQuiz();
+        name_data.push (data_item_name);
+        fs.writeFileSync('quiz_app_data.json' , JSON.stringify(name_data));
     }
 
-    else if(command1 === "java")
+    else 
     {
-        data.javaQuiz();
+        console.log("Name is already there.");
     }
-
-    else if(command1 === "sql")
-    {
-        data.sqlQuiz();
-    }
-
-    else
-    {
-        data.invalidCMD();
-    }
-
-
-
-    const yargs = require('yargs');
-const data = require('./Quiz_func_def.js');
-
-console.log("\n\n             ---- If you want to start or stop the Arcade Quiz App the please give the user input as start or stop respectively ----\n\n")
-data.invalidCMD();
-
-// Create a command using yargs
-yargs.command({
-  command: 'start',
-  describe: 'Start the program Arcade Quiz Application',
-  handler: () => {
-    // Run a loop until the user enters a candidate name
-    const readline = require('readline').createInterface({
-      input: process.stdin,
-      output: process.stdout
-    });
-
-    console.log("               -----------------------------------------------------------------------------------------------------------------               \n");
-    console.log("                                                           **Welcome to Arcade Quiz**\n");
-    console.log("               -----------------------------------------------------------------------------------------------------------------               \n\n");
-
-    function runProgram()
-    {
-        readline.question('> Enter candidate name: ', (candidateName) => {
-        if (candidateName.toLowerCase() === 'exit')
-        {
-          data.stopQuiz();
-          readline.close();
-        }
-        else if (candidateName.trim() === '')
-        {
-          console.log('Please enter a valid candidate name.');
-          runProgram();
-        }
-        else
-        {
-          data.startQuiz();
-          readline.close();
-        }
-      });
-    }
-
-    runProgram(); // Start the program
-  }
-});
-
-// Parse the command-line arguments
-yargs.parse();
+};
