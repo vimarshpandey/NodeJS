@@ -63,6 +63,7 @@ var getAns = (name, ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10)
     catch (e) {}
 
     //console.log(data[i].correctAns);
+    
     if (data[0].correctAns == ans1)
     {score = score + 5;}else{score = score - 1;}
     if (data[1].correctAns == ans2)
@@ -110,8 +111,8 @@ var getResult = (name) =>
 
     if (personData)
     {
-        console.log(chalk.bold.blue(`                                                         ---- **${name}'s score is: ${personData.score}  ** ----\n`));
-        console.log(chalk.bold.green("                                   ---- **For getting correct answers of the questions use getans command** ----\n"));
+        console.log(chalk.bold.blue(`                                                         ---- **${name}'s score is: ${personData.score} / 50 ** ----\n`));
+        console.log(chalk.bold.green("                             ---- **For getting correct answers of the questions use getans command with name** ----\n"));
         console.log(chalk.bold.green("                                 ---- **For the answer of specific question enter question number (optional)** ----\n"));
     }
 
@@ -121,25 +122,52 @@ var getResult = (name) =>
     }
 };
 
-var getAnswer=(question) =>
+var getAnswer = (name, question) =>
 {
+    try
+    {
+        var dataString = fs.readFileSync('quiz_app_data.json');
+        var quiz_data = JSON.parse(dataString);
+    }
+    
+    catch (e)
+    {
+        console.error("Error reading quiz_app_data.json:", e);
+        return;
+    }
+
+    var candidateData = quiz_data.find(candidate => candidate.name === name);
+
+    if (!candidateData)
+    {
+        console.log(chalk.bold.red("                                                          ---- **You have not given the quiz. Cannot display the answers** ----\n"));
+        return;
+    }
+
+    var question_data;
+
     try
     {
         var dataString = fs.readFileSync('questions.json');
         question_data = JSON.parse(dataString);
+    } 
+    
+    catch (e)
+    {
+        console.error("Error reading questions.json:", e);
+        return;
     }
 
-    catch (e) {}
-
-    if(question)
+    if (question)
     {
         console.log(question_data[question - 1].question);
         var ca = question_data[question - 1].correctAns;
         console.log(chalk.bold.green(question_data[question - 1].options[ca - 1]));
     }
+
     else
     {
-        for(let i =0; i<question_data.length; i++)
+        for (let i = 0; i < question_data.length; i++)
         {
             console.log(question_data[i].question);
             var ca = question_data[i].correctAns;
@@ -147,7 +175,7 @@ var getAnswer=(question) =>
         }
     }
 
-    console.log(chalk.bold.green("\n\n                                        ---- **For leaderboard use getleaderboard command with the number of toppers you want to see** ----\n"))
+    console.log(chalk.bold.green("\n\n                                        ---- **For leaderboard use getleaderboard command with the number of toppers you want to see** ----\n"));
 };
 
 var getLeaderboard = (num) =>

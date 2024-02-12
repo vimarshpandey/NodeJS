@@ -133,6 +133,12 @@ yargs.command({
     describe: 'Gives the answer of the question',
     builder:
     {
+        name:
+        {
+            describe:'Your name',
+            demandOption: true,
+            type: 'string'
+        },
         question:
         {
             describe:'Answer of the question',
@@ -144,7 +150,7 @@ yargs.command({
     handler:
     function(argv)
     {
-        data.getAnswer(argv.question);
+        data.getAnswer(argv.name, argv.question);
     }
 })
 

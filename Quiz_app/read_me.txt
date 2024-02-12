@@ -61,7 +61,7 @@
 
         --> email
 
-        --name=vimarsh --ans1=2 --ans2=4 --ans3=1 --ans4=3 --ans5=3 --ans6=1 --ans7=2 --ans8=4 --ans9=3 --ans10=1
+        --name=vimarsh1 --ans1=2 --ans2=4 --ans3=1 --ans4=3 --ans5=3 --ans6=1 --ans7=2 --ans8=4 --ans9=3 --ans10=1
 
 
 
@@ -69,6 +69,10 @@
 
 
 
+
+        min 5 Function
+        min 7 attributes
+your_name, job_type, job_location, salary_range, designation, company_rating, perticular_company
 
 
 
