@@ -34,9 +34,9 @@ var getQuestion=() =>
 };
 
 
-var getAns = (name, ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10) =>
-{
-    var score = 0;
+var getAns = (name, ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10) => {
+    var totalScore = 0;
+    var subjectScores = {};
     var name_data = [];
 
     try
@@ -44,14 +44,14 @@ var getAns = (name, ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10)
         var dataString = fs.readFileSync('quiz_app_data.json');
         name_data = JSON.parse(dataString);
     }
-
+    
     catch (e) {}
 
     var duplicateData = name_data.find((data) => data.name === name);
 
     if (duplicateData)
     {
-        return console.log(chalk.bold.red("                                                             ---- **Name is already there** ----\n"));
+        return console.log(chalk.bold.red(" ---- **You have already given the test** ----\n"));
     }
 
     try
@@ -59,43 +59,47 @@ var getAns = (name, ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10)
         var dataString = fs.readFileSync('questions.json');
         var data = JSON.parse(dataString);
     }
-
+    
     catch (e) {}
 
-    //console.log(data[i].correctAns);
-    
-    if (data[0].correctAns == ans1)
-    {score = score + 5;}else{score = score - 1;}
-    if (data[1].correctAns == ans2)
-    {score = score + 5;}else{score = score - 1;}
-    if (data[2].correctAns == ans3)
-    {score = score + 5;}else{score = score - 1;}
-    if (data[3].correctAns == ans4)
-    {score = score + 5;}else{score = score - 1;}
-    if (data[4].correctAns == ans5)
-    {score = score + 5;}else{score = score - 1;}
-    if (data[5].correctAns == ans6)
-    {score = score + 5;}else{score = score - 1;}
-    if (data[6].correctAns == ans7)
-    {score = score + 5;}else{score = score - 1;}
-    if (data[7].correctAns == ans8)
-    {score = score + 5;}else{score = score - 1;}
-    if (data[8].correctAns == ans9)
-    {score = score + 5;}else{score = score - 1;}
-    if (data[9].correctAns == ans10)
-    {score = score + 5;}else{score = score - 1;}
+    for (let i = 0; i < data.length; i++)
+    {
+        const correctAns = data[i].correctAns;
+        const selectedAns = eval(`ans${i + 1}`);
 
+        if (correctAns === selectedAns)
+        {
+            totalScore += 5;
 
-    var updatedData = {name: name, score: score};
+            // Assuming 'subject' is the attribute in questions.json for the subject
+            const subject = data[i].subject;
+
+            // Initialize subject score if not already present
+            if (!subjectScores[subject])
+            {
+                subjectScores[subject] = 0;
+            }
+
+            // Update subject score
+            subjectScores[subject] += 5;
+        }
+
+        else
+        {
+            totalScore -= 1;
+        }
+    }
+
+    var updatedData = { name: name, totalScore: totalScore, subjectScores: subjectScores };
 
     fs.writeFileSync('quiz_app_data.json', JSON.stringify([...name_data, updatedData]));
 
-    console.log(chalk.bold.green("\n                                                       ---- **Thanks for giving the test** ----\n"));
-    console.log(chalk.bold.green("\n                                               ---- **For result use getresult command with name** ----\n"));
-
+    console.log(chalk.bold.green("\n                                                    ---- **Thanks for giving the test** ----"));
+    console.log(chalk.bold.green("\n                                              ---- **For result use getresult command with name** ----"));
+    console.log(chalk.bold.green("\n                                         ---- **If want subjectwise marks then use the command with subject** ----\n\n"));
 };
 
-var getResult = (name) =>
+var getResult = (name, subject) =>
 {
     var name_data = [];
 
@@ -109,16 +113,36 @@ var getResult = (name) =>
 
     var personData = name_data.find((data) => data.name === name);
 
-    if (personData)
+    if(subject)
     {
-        console.log(chalk.bold.blue(`                                                         ---- **${name}'s score is: ${personData.score} / 50 ** ----\n`));
-        console.log(chalk.bold.green("                             ---- **For getting correct answers of the questions use getans command with name** ----\n"));
-        console.log(chalk.bold.green("                                 ---- **For the answer of specific question enter question number (optional)** ----\n"));
+        if (personData)
+        {
+            console.log(chalk.bold.blue(`                                                    ---- **${name}'s score in General Knowledge is: ${personData.subjectScores.gk} ** ----\n`));
+            console.log(chalk.bold.blue(`                                                      ---- **${name}'s score in Programming is: ${personData.subjectScores.programming} ** ----\n`));
+            console.log(chalk.bold.blue(`                                                         ---- **${name}'s score in Maths is: ${personData.subjectScores.maths} ** ----\n`));
+            console.log(chalk.bold.green("                             ---- **For getting correct answers of the questions use getans command with name** ----\n"));
+            console.log(chalk.bold.green("                                 ---- **For the answer of specific question enter question number (optional)** ----\n"));
+        }
+
+        else
+        {
+            console.log(chalk.bold.red(`                                                      ---- **${name} not found in the data** -----\n`));
+        }
     }
 
     else
     {
-        console.log(chalk.bold.red(`                                                      ---- **${name} not found in the data** -----\n`));
+        if (personData)
+        {
+            console.log(chalk.bold.blue(`                                                      ---- **${name}'s total score is: ${personData.totalScore} / 50 ** ----\n`));
+            console.log(chalk.bold.green("                             ---- **For getting correct answers of the questions use getans command with name** ----\n"));
+            console.log(chalk.bold.green("                                 ---- **For the answer of specific question enter question number (optional)** ----\n"));
+        }
+
+        else
+        {
+            console.log(chalk.bold.red(`                                                      ---- **${name} not found in the data** -----\n`));
+        }
     }
 };
 
@@ -175,7 +199,7 @@ var getAnswer = (name, question) =>
         }
     }
 
-    console.log(chalk.bold.green("\n\n                                        ---- **For leaderboard use getleaderboard command with the number of toppers you want to see** ----\n"));
+    console.log(chalk.bold.green("\n\n                               ---- **For leaderboard use getleaderboard command with the number of toppers you want to see (optional)** ----\n"));
 };
 
 var getLeaderboard = (num) =>
@@ -185,13 +209,26 @@ var getLeaderboard = (num) =>
         var dataString = fs.readFileSync('quiz_app_data.json');
         var score_data = JSON.parse(dataString);
 
-        score_data = _.sortBy(score_data, 'score').reverse();
+        score_data = _.sortBy(score_data, 'score');
 
-        console.log(`\n                                                       Top ${num} persons on the leaderboard:\n`);
-
-        for (let i = 0; i < num; i++)
+        if(num)
         {
-            console.log(chalk.bold.red(`                                                             ${i + 1}. ${score_data[i].name} - Score: ${score_data[i].score}`));
+            console.log(`\n                                                       Top ${num} persons on the leaderboard:\n`);
+
+            for (let i = 0; i < num; i++)
+            {
+                console.log(chalk.bold.red(`                                                             ${i + 1}. ${score_data[i].name} - Score: ${score_data[i].totalScore}`));
+            }
+        }
+
+        else
+        {
+            console.log(`\n                                                       All persons on the leaderboard:\n`);
+
+            for (let i = 0; i < score_data.length; i++)
+            {
+                console.log(chalk.bold.red(`                                                             ${i + 1}. ${score_data[i].name} - Score: ${score_data[i].totalScore}`));
+            }
         }
     }
 

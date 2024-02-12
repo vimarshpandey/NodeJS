@@ -118,13 +118,19 @@ yargs.command({
             describe:'Your name',
             demandOption: true,
             type: 'string'
+        },
+        subject:
+        {
+            describe:'Your subject name',
+            demandOption: false,
+            type: 'string'
         }
     },
 
     handler:
     function(argv)
     {
-        data.getResult(argv.name);
+        data.getResult(argv.name, argv.subject);
     }
 })
 
@@ -162,7 +168,7 @@ yargs.command({
         num:
         {
             describe:'Number of top persons you want to see',
-            demandOption: true,
+            demandOption: false,
             type: 'number'
         }
     },
