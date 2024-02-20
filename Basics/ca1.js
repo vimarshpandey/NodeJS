@@ -24,52 +24,52 @@ console.log("Enter gender is",inpt._[18])
 console.log("Enter the third name: ",inpt._[19]);
 
 if(inpt._[0] === "m"){
-    console.log(chalk.yellow.bgGreen(inpt._[1]));
+    console.log(chalk.yellow.bgGreen.bold(inpt._[1]));
 }else{
-    console.log(chalk.green.bgWhite(inpt._[1]));
+    console.log(chalk.green.bgWhite.bold(inpt._[1]));
 }
 if(inpt._[2] === "m"){
-    console.log(chalk.yellow.bgGreen(inpt._[3]));
+    console.log(chalk.yellow.bgGreen.bold(inpt._[3]));
 }else{
-    console.log(chalk.green.bgWhite(inpt._[3]));
+    console.log(chalk.green.bgWhite.bold(inpt._[3]));
 }
 if(inpt._[4] === "m"){
-    console.log(chalk.yellow.bgGreen(inpt._[5]));
+    console.log(chalk.yellow.bgGreen.bold(inpt._[5]));
 }else{
-    console.log(chalk.green.bgWhite(inpt._[5]));
+    console.log(chalk.green.bgWhite.bold(inpt._[5]));
 }
 if(inpt._[6] === "m"){
-    console.log(chalk.yellow.bgGreen(inpt._[7]));
+    console.log(chalk.yellow.bgGreen.bold(inpt._[7]));
 }else{
-    console.log(chalk.green.bgWhite(inpt._[7]));
+    console.log(chalk.green.bgWhite.bold(inpt._[7]));
 }
 if(inpt._[8] === "m"){
-    console.log(chalk.yellow.bgGreen(inpt._[9]));
+    console.log(chalk.yellow.bgGreen.bold(inpt._[9]));
 }else{
-    console.log(chalk.green.bgWhite(inpt._[9]));
+    console.log(chalk.green.bgWhite.bold(inpt._[9]));
 }
 if(inpt._[10] === "m"){
-    console.log(chalk.yellow.bgGreen(inpt._[11]));
+    console.log(chalk.yellow.bgGreen.bold(inpt._[11]));
 }else{
-    console.log(chalk.green.bgWhite(inpt._[11]));
+    console.log(chalk.green.bgWhite.bold(inpt._[11]));
 }
 if(inpt._[12] === "m"){
-    console.log(chalk.yellow.bgGreen(inpt._[13]));
+    console.log(chalk.yellow.bgGreen.bold(inpt._[13]));
 }else{
-    console.log(chalk.green.bgWhite(inpt._[13]));
+    console.log(chalk.green.bgWhite.bold(inpt._[13]));
 }
 if(inpt._[14] === "m"){
-    console.log(chalk.yellow.bgGreen(inpt._[15]));
+    console.log(chalk.yellow.bgGreen.bold(inpt._[15]));
 }else{
-    console.log(chalk.green.bgWhite(inpt._[15]));
+    console.log(chalk.green.bgWhite.bold(inpt._[15]));
 }
 if(inpt._[16] === "m"){
-    console.log(chalk.yellow.bgGreen(inpt._[17]));
+    console.log(chalk.yellow.bgGreen.bold(inpt._[17]));
 }else{
-    console.log(chalk.green.bgWhite(inpt._[17]));
+    console.log(chalk.green.bgWhite.bold(inpt._[17]));
 }
 if(inpt._[18] === "m"){
-    console.log(chalk.yellow.bgGreen(inpt._[19]));
+    console.log(chalk.yellow.bgGreen.bold(inpt._[19]));
 }else{
-    console.log(chalk.green.bgWhite(inpt._[19]));
+    console.log(chalk.green.bgWhite.bold(inpt._[19]));
 }

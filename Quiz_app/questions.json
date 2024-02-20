@@ -1,72 +1,72 @@
 [
     {
-        "id": 1,
         "question": "\n\n                                                            What is the capital of India?\n",
         "options": ["                                                                      1. Tokyo", "                                                                      2. New Delhi", "                                                                      3. Berlin", "                                                                      4. Paris\n\n"],
         "correctAns": 2,
-        "subject": "gk"
+        "subject": "gk",
+        "hint": "Hint for question 1"
     },
     {
-        "id": 2,
         "question": "\n\n                                                            What is the capital of France?\n",
         "options": ["                                                                      1. Tokyo", "                                                                      2. New Delhi", "                                                                      3. Berlin", "                                                                      4. Paris\n\n"],
         "correctAns": 4,
-        "subject": "gk"
+        "subject": "gk",
+        "hint": "Hint for question 2"
     },
     {
-        "id": 3,
         "question": "\n\n                                                         What is the capital of United States?\n",
         "options": ["                                                                   1. Washington D.C.", "                                                                   2. New Delhi", "                                                                   3. Berlin", "                                                                   4. Paris\n\n"],
         "correctAns": 1,
-        "subject": "gk"
+        "subject": "gk",
+        "hint": "Hint for question 3"
     },
     {
-        "id": 4,
         "question": "\n\n                                               Which language is not an object oriented pogramming lngua?\n",
         "options": ["                                                                   1. C++", "                                                                   2. Java", "                                                                   3. C", "                                                                   4. PYthon\n\n"],
         "correctAns": 3,
-        "subject": "programming"
+        "subject": "programming",
+        "hint": "Hint for question 4"
     },
     {
-        "id": 5,
         "question": "\n\n                                               Which of the following is not a variable type in c programming\n",
         "options": ["                                                                   1. Float", "                                                                   2. Int", "                                                                   3. While Loop", "                                                                   4. All of the above\n\n"],
         "correctAns": 3,
-        "subject": "programming"
+        "subject": "programming",
+        "hint": "Hint for question 5"
     },
     {
-        "id": 6,
         "question": "\n\n                                                            How may keywords are there in python\n",
         "options": ["                                                                           1. 35", "                                                                           2. 42", "                                                                           3. 12", "                                                                           4. 63\n\n"],
         "correctAns": 1,
-        "subject": "programming"
+        "subject": "programming",
+        "hint": "Hint for question 6"
     },
     {
-        "id": 7,
         "question": "\n\n                                                      What is the value of x in the equation 3x – 15 – 6 = 0 ?\n",
         "options": ["                                                                          1. Six", "                                                                          2. Seven", "                                                                          3. Eight", "                                                                          4. Nine\n\n"],
         "correctAns": 2,
-        "subject": "maths"
+        "subject": "maths",
+        "hint": "Hint for question 7"
     },
     {
-        "id": 8,
         "question": "\n\n                                                       Find the missing terms in multiple of 3: 3, 6, 9, __, 15\n",
         "options": ["                                                                           1. 10", "                                                                           2. 15", "                                                                           3. 18", "                                                                           4. 12\n\n"],
         "correctAns": 4,
-        "subject": "maths"
+        "subject": "maths",
+        "hint": "Hint for question 8"
     },
     {
-        "id": 9,
         "question": "\n\n                                                                     20+(90÷2) is equal to:\n",
         "options": ["                                                                             1. 50", "                                                                             2. 55", "                                                                             3. 65", "                                                                             4. 60\n\n"],
         "correctAns": 3,
-        "subject": "maths"
+        "subject": "maths",
+        "hint": "Hint for question 9"
     },
     {
-        "id": 10,
         "question": "\n\n                                                                    The product of 121 x 0 x 200 x 25 is\n",
         "options": ["                                                                              1. Zero", "                                                                              2. 1500", "                                                                              3. 4000", "                                                                              4. None of the above\n\n"],
         "correctAns": 1,
-        "subject": "maths"
+        "subject": "maths",
+        "hint": "Hint for question 10"
     }
 ]

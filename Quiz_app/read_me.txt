@@ -55,7 +55,7 @@
 
         --> loadnoats(one arguments)
 
-        --> subject attribute in json file for getting subject wise marks
+        --> get_hint()
 
         --> Add question
 
@@ -73,6 +73,11 @@
         min 5 Function
         min 7 attributes
 your_name, job_type, job_location, salary_range, designation, company_rating, perticular_company
+company info
+search on the basis of slkills
+apply for any perticular company
+
+
 
 
 

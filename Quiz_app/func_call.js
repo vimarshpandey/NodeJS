@@ -145,7 +145,7 @@ yargs.command({
             demandOption: true,
             type: 'string'
         },
-        question:
+        questionnumber:
         {
             describe:'Answer of the question',
             demandOption: false,
@@ -156,7 +156,7 @@ yargs.command({
     handler:
     function(argv)
     {
-        data.getAnswer(argv.name, argv.question);
+        data.getAnswer(argv.name, argv.questionnumber);
     }
 })
 
@@ -177,6 +177,88 @@ yargs.command({
     function(argv)
     {
         data.getLeaderboard(argv.num);
+    }
+})
+
+yargs.command({
+    command: 'gethint',
+    describe: 'Gives the hint for a perticular question',
+    builder:
+    {
+        questionnumber:
+        {
+            describe:'Id of the question',
+            demandOption: true,
+            type: 'number'
+        }
+    },
+
+    handler:
+    function(argv)
+    {
+        data.getHint(argv.questionnumber);
+    }
+})
+
+yargs.command({
+    command: 'addquestion',
+    describe: 'For adding a question',
+    builder:
+    {
+        question:
+        {
+            describe:'Question for adding',
+            demandOption: true,
+            type: 'string'
+        },
+        option1:
+        {
+            describe:'Option 1 for question',
+            demandOption: true,
+            type: 'string'
+        },
+        option2:
+        {
+            describe:'Option 2 for question',
+            demandOption: true,
+            type: 'string'
+        },
+        option3:
+        {
+            describe:'Option 3 for question',
+            demandOption: true,
+            type: 'string'
+        },
+        option4:
+        {
+            describe:'Option 4 for question',
+            demandOption: true,
+            type: 'string'
+        },
+        correctAns:
+        {
+            describe:'Correct answer for the question',
+            demandOption: true,
+            type: 'number'
+        },
+        subject:
+        {
+            describe:'Subject of the question',
+            demandOption: true,
+            type: 'string'
+        },
+        hint:
+        {
+            describe:'Hint for the question',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+
+    handler:
+    function(argv)
+    {
+        data.getAnswer(argv.question, argv.option1, argv.option2, argv.option3, argv.option4, argv.correctAns, argv.subject, argv.hint);
     }
 })
 

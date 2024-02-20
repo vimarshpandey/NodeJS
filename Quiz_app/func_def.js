@@ -18,9 +18,9 @@ var getQuestion=() =>
         data = JSON.parse(dataString);
     }
 
-    catch (e){}
+    catch (e) {}
 
-    for(let i = 0; i < 10; i++)
+    for(let i = 0; i < data.length; i++)
     {
         console.log(data[i].question);
         for(let j = 0; j < 4; j++)
@@ -117,9 +117,23 @@ var getResult = (name, subject) =>
     {
         if (personData)
         {
-            console.log(chalk.bold.blue(`                                                    ---- **${name}'s score in General Knowledge is: ${personData.subjectScores.gk} ** ----\n`));
-            console.log(chalk.bold.blue(`                                                      ---- **${name}'s score in Programming is: ${personData.subjectScores.programming} ** ----\n`));
-            console.log(chalk.bold.blue(`                                                         ---- **${name}'s score in Maths is: ${personData.subjectScores.maths} ** ----\n`));
+            if(subject === "gk")
+            {
+                console.log(chalk.bold.blue(`                                                    ---- **${name}'s score in General Knowledge is: ${personData.subjectScores.gk} ** ----\n`));
+            }
+            else if(subject === "programming")
+            {
+                console.log(chalk.bold.blue(`                                                      ---- **${name}'s score in Programming is: ${personData.subjectScores.programming} ** ----\n`));
+            }
+            else if(subject === "maths")
+            {
+                console.log(chalk.bold.blue(`                                                         ---- **${name}'s score in Maths is: ${personData.subjectScores.maths} ** ----\n`));
+            }
+            else
+            {
+                console.log(chalk.bold.red("                                                       ---- **Invalid subject name** ----"));
+                return;
+            }
             console.log(chalk.bold.green("                             ---- **For getting correct answers of the questions use getans command with name** ----\n"));
             console.log(chalk.bold.green("                                 ---- **For the answer of specific question enter question number (optional)** ----\n"));
         }
@@ -146,7 +160,7 @@ var getResult = (name, subject) =>
     }
 };
 
-var getAnswer = (name, question) =>
+var getAnswer = (name, questionnumber) =>
 {
     try
     {
@@ -182,11 +196,19 @@ var getAnswer = (name, question) =>
         return;
     }
 
-    if (question)
+    if (questionnumber)
     {
-        console.log(question_data[question - 1].question);
-        var ca = question_data[question - 1].correctAns;
-        console.log(chalk.bold.green(question_data[question - 1].options[ca - 1]));
+        if(question_data.length >= questionnumber)
+        {
+            console.log(question_data[questionnumber - 1].question);
+            var ca = question_data[questionnumber - 1].correctAns;
+            console.log(chalk.bold.green(question_data[questionnumber - 1].options[ca - 1]));
+        }
+
+        else
+        {
+            console.log("Invalid question number.")
+        }
     }
 
     else
@@ -209,7 +231,7 @@ var getLeaderboard = (num) =>
         var dataString = fs.readFileSync('quiz_app_data.json');
         var score_data = JSON.parse(dataString);
 
-        score_data = _.sortBy(score_data, 'score');
+        score_data = _.sortBy(score_data, 'totalScore').reverse();
 
         if(num)
         {
@@ -238,4 +260,30 @@ var getLeaderboard = (num) =>
     }
 };
 
-module.exports = {welcomeMSG, getQuestion, getAns, getResult, getAnswer, getLeaderboard};
+var getHint=(questionnumber) =>
+{
+    try
+    {
+        var dataString = fs.readFileSync('questions.json');
+        data = JSON.parse(dataString);
+    }
+
+    catch (e){}
+
+        if(data.length >= questionnumber)
+        {
+            console.log(data[questionnumber - 1].hint);
+        }
+        else
+        {
+            console.log('Invalid Question Number'); 
+        }
+
+    
+    console.log(chalk.bold.green("                                             **---- For giving the answer use giveans command** ----\n"));
+    console.log(chalk.bold.green("                                 **---- Before giving the answer enter your name and then give the answers** ----\n\n"));
+
+    
+};
+
+module.exports = {welcomeMSG, getQuestion, getAns, getResult, getAnswer, getLeaderboard, getHint};
