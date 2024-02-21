@@ -12,7 +12,6 @@ const instruction = `
 <button onclick="location.href='/seating'">Check Seating</button> 
 <button onclick="location.href='/candidates'">Check Candidates</button>
 <button onclick="location.href='/descripency'">Check Descripency</button>
-
 `
 
 const candies = [
@@ -70,7 +69,7 @@ const discripency_report = [
 ]
 
 app.get('',(req,res) => {
-    res.send(instruction)
+    res.send(instruction);
 })
 
 app.get('/seating',(req,res) => {

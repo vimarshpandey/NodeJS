@@ -104,7 +104,7 @@ yargs.command({
     handler:
     function(argv)
     {
-        data.getAns(argv.name, argv.ans1, argv.ans2, argv.ans3, argv.ans4, argv.ans5, argv.ans6, argv.ans7, argv.ans8, argv.ans9, argv.ans10);
+        data.giveAns(argv.name, argv.ans1, argv.ans2, argv.ans3, argv.ans4, argv.ans5, argv.ans6, argv.ans7, argv.ans8, argv.ans9, argv.ans10);
     }
 })
 
@@ -118,19 +118,13 @@ yargs.command({
             describe:'Your name',
             demandOption: true,
             type: 'string'
-        },
-        subject:
-        {
-            describe:'Your subject name',
-            demandOption: false,
-            type: 'string'
         }
     },
 
     handler:
     function(argv)
     {
-        data.getResult(argv.name, argv.subject);
+        data.getResult(argv.name);
     }
 })
 
@@ -241,12 +235,6 @@ yargs.command({
             demandOption: true,
             type: 'number'
         },
-        subject:
-        {
-            describe:'Subject of the question',
-            demandOption: true,
-            type: 'string'
-        },
         hint:
         {
             describe:'Hint for the question',
@@ -258,8 +246,41 @@ yargs.command({
     handler:
     function(argv)
     {
-        data.getAnswer(argv.question, argv.option1, argv.option2, argv.option3, argv.option4, argv.correctAns, argv.subject, argv.hint);
+        data.addQuestion(argv.question, argv.option1, argv.option2, argv.option3, argv.option4, argv.correctAns, argv.hint);
     }
 })
+
+yargs.command({
+    command: 'removequestion',
+    describe: 'Gives the result',
+    builder:
+    {
+        questionToRemove:
+        {
+            describe:'The problem statement',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+
+    handler:
+    function(argv)
+    {
+        data.removeQuestion(argv.questionToRemove);
+    }
+})
+
+// yargs.command({
+//     command: 'abc',
+//     describe: 'test',
+//     builder:
+//     {},
+
+//     handler:
+//     function()
+//     {
+//         data.abc();
+//     }
+// })
 
 yargs.parse();

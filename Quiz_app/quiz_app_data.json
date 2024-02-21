@@ -1,1 +1,46 @@
-[{"name":"vimarsh","totalScore":38,"subjectScores":{"gk":15,"programming":10,"maths":15}},{"name":"kiran","totalScore":32,"subjectScores":{"gk":10,"programming":10,"maths":15}},{"name":"neeraj","totalScore":26,"subjectScores":{"gk":5,"programming":10,"maths":15}},{"name":"anand","totalScore":26,"subjectScores":{"gk":5,"programming":10,"maths":15}},{"name":"roshan","totalScore":26,"subjectScores":{"gk":5,"programming":10,"maths":15}},{"name":"yogesh","totalScore":20,"subjectScores":{"gk":5,"programming":5,"maths":15}},{"name":"aadarsh","totalScore":20,"subjectScores":{"gk":5,"programming":5,"maths":15}},{"name":"shivam","totalScore":20,"subjectScores":{"gk":5,"programming":5,"maths":15}},{"name":"satyam","totalScore":14,"subjectScores":{"gk":5,"maths":15}},{"name":"akshat","totalScore":14,"subjectScores":{"gk":5,"maths":15}},{"name":"samarth","totalScore":26,"subjectScores":{"gk":15,"programming":15}},{"name":"samarth123","totalScore":26,"subjectScores":{"gk":15,"programming":15}},{"name":"samarth789","totalScore":20,"subjectScores":{"gk":10,"programming":15}},{"name":"samarth567","totalScore":26,"subjectScores":{"gk":15,"programming":15}}]
+[
+    {
+        "name": "vimarsh",
+        "totalScore": 50
+    },
+    {
+        "name": "nishant",
+        "totalScore": 50
+    },
+    {
+        "name": "kiran",
+        "totalScore": 50
+    },
+    {
+        "name": "anand",
+        "totalScore": 44
+    },
+    {
+        "name": "roshan",
+        "totalScore": 20
+    },
+    {
+        "name": "shivam",
+        "totalScore": 50
+    },
+    {
+        "name": "anjali",
+        "totalScore": 50
+    },
+    {
+        "name": "yogesh",
+        "totalScore": 50
+    },
+    {
+        "name": "satyam",
+        "totalScore": 44
+    },
+    {
+        "name": "vimu",
+        "totalScore": 50
+    },
+    {
+        "name": "v",
+        "totalScore": 50
+    }
+]
