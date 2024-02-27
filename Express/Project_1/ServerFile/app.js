@@ -3,15 +3,10 @@ const express = require('express');
 
 const app = express();
 
-console.log("\nDifferent paths of the file\n");
-console.log(__dirname);
-console.log(__filename);
-console.log(path.join(__dirname , '..'));
-console.log(path.join(__dirname,'../file'));
+console.log(path.join(__dirname,'../file/style'));
+const sttcpth1 = path.join(__dirname , '../file');
 
-const sttcpth = path.join(__dirname,'../file');
-
-app.use(express.static(sttcpth))
+app.use(express.static(sttcpth1));
 
 app.listen(3000, () =>
 {
