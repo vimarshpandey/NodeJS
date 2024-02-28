@@ -17,7 +17,7 @@ app.get('', (req, res) =>
     })
 })
 
-app.get('', (req, res) => 
+app.get('/about', (req, res) => 
 {
     res.render('about',{
         title:'First Program',
@@ -25,7 +25,7 @@ app.get('', (req, res) =>
     })
 })
 
-app.get('', (req, res) => 
+app.get('/help', (req, res) => 
 {
     res.render('help',{
         title:'First Program',
@@ -33,7 +33,7 @@ app.get('', (req, res) =>
     })
 })
 
-app.get('', (req, res) => 
+app.get('/contact', (req, res) => 
 {
     res.render('contact',{
         title:'First Program',
