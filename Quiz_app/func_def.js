@@ -71,6 +71,51 @@ var getQuestion=() =>
     console.log(chalk.bold.green("                                 **---- Before giving the answer enter your name and then give the answers** ----\n\n"));
 };
 
+var addQuestion = (question, option1, option2, option3, option4, correctAns, hint) =>
+{
+    try
+    {
+        var data = loadDataQuestion();
+    }
+    catch (e)
+    {
+        // If file doesn't exist or has invalid JSON, initialize with an empty array
+        var data = [];
+    }
+
+    var newQuestion = {
+        question: question,
+        options: [option1, option2, option3, option4],
+        correctAns: correctAns,
+        hint: hint
+    };
+
+    data.push(newQuestion);
+
+    // Write the updated data back to 'questions.json'
+    fs.writeFileSync('questions.json', JSON.stringify(data));
+    console.log(chalk.bold.green("                                                   **---- Question added successfully** ----\n\n"));
+};
+
+const removeQuestion = (questionToRemove) =>
+{
+    try
+    {
+        const data = loadDataQuestion();
+
+        // Remove the question with the specified text
+        const updatedData = data.filter(question => question.question !== questionToRemove);
+
+        // Write the updated data back to 'questions.json'
+        fs.writeFileSync('questions.json', JSON.stringify(updatedData));
+        console.log(chalk.bold.green("                                                   **---- Question removed successfully** ----\n\n"));
+    }
+    catch (error)
+    {
+        console.error('Error removing question');
+    }
+};
+
 
 var giveAns = (name, ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10) =>
 {
@@ -226,51 +271,6 @@ var getHint=(questionnumber) =>
     console.log(chalk.bold.green("                                 **---- Before giving the answer enter your name and then give the answers** ----\n\n"));
 
     
-};
-
-var addQuestion = (question, option1, option2, option3, option4, correctAns, hint) =>
-{
-    try
-    {
-        var data = loadDataQuestion();
-    }
-    catch (e)
-    {
-        // If file doesn't exist or has invalid JSON, initialize with an empty array
-        var data = [];
-    }
-
-    var newQuestion = {
-        question: question,
-        options: [option1, option2, option3, option4],
-        correctAns: correctAns,
-        hint: hint
-    };
-
-    data.push(newQuestion);
-
-    // Write the updated data back to 'questions.json'
-    fs.writeFileSync('questions.json', JSON.stringify(data));
-    console.log(chalk.bold.green("                                                   **---- Question added successfully** ----\n\n"));
-};
-
-const removeQuestion = (questionToRemove) =>
-{
-    try
-    {
-        const data = loadDataQuestion();
-
-        // Remove the question with the specified text
-        const updatedData = data.filter(question => question.question !== questionToRemove);
-
-        // Write the updated data back to 'questions.json'
-        fs.writeFileSync('questions.json', JSON.stringify(updatedData));
-        console.log(chalk.bold.green("                                                   **---- Question removed successfully** ----\n\n"));
-    }
-    catch (error)
-    {
-        console.error('Error removing question');
-    }
 };
 
 // var abc=() =>
