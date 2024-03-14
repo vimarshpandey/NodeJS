@@ -2,36 +2,29 @@ const fs = require('fs');
 const chalk = require('chalk');
 const _ = require('lodash');
 
-const loadDataQuestion = () =>
-{
-    try
-    {
+const loadDataQuestion = () => {
+    try {
         const dataString = fs.readFileSync('questions.json');
         return JSON.parse(dataString);
     }
-    catch (error) 
-    {
+    catch (error) {
         console.error('Error reading questions.json');
         return [];
     }
 };
 
-const loadDataQuizAppData = () =>
-{
-    try
-    {
+const loadDataQuizAppData = () => {
+    try {
         const dataString = fs.readFileSync('quiz_app_data.json');
         return JSON.parse(dataString);
     }
-    catch (error)
-    {
+    catch (error) {
         console.error('Error reading quiz_app_data.json');
         return [];
     }
 };
 
-function welcomeMSG()
-{
+function welcomeMSG() {
     console.log(chalk.bold.yellow("               -----------------------------------------------------------------------------------------------------------------               \n"));
     console.log(chalk.bold.yellow("                                                           **Welcome to Arcade Quiz**\n"));
     console.log(chalk.bold.yellow("               -----------------------------------------------------------------------------------------------------------------               \n"));
@@ -53,15 +46,12 @@ function welcomeMSG()
     console.log(chalk.bold.yellow("               -----------------------------------------------------------------------------------------------------------------               \n"));
 }
 
-var getQuestion=() =>
-{
+var getQuestion = () => {
     var data = loadDataQuestion();
 
-    for(let i = 0; i < data.length; i++)
-    {
+    for (let i = 0; i < data.length; i++) {
         console.log(data[i].question);
-        for(let j = 0; j < 4; j++)
-        {
+        for (let j = 0; j < 4; j++) {
             console.log(data[i].options[j]);
         }
     }
@@ -71,17 +61,9 @@ var getQuestion=() =>
     console.log(chalk.bold.green("                                 **---- Before giving the answer enter your name and then give the answers** ----\n\n"));
 };
 
-var addQuestion = (question, option1, option2, option3, option4, correctAns, hint) =>
-{
-    try
-    {
-        var data = loadDataQuestion();
-    }
-    catch (e)
-    {
-        // If file doesn't exist or has invalid JSON, initialize with an empty array
-        var data = [];
-    }
+var addQuestion = (question, option1, option2, option3, option4, correctAns, hint) => {
+        
+    var data = loadDataQuestion();
 
     var newQuestion = {
         question: question,
@@ -92,58 +74,48 @@ var addQuestion = (question, option1, option2, option3, option4, correctAns, hin
 
     data.push(newQuestion);
 
-    // Write the updated data back to 'questions.json'
     fs.writeFileSync('questions.json', JSON.stringify(data));
     console.log(chalk.bold.green("                                                   **---- Question added successfully** ----\n\n"));
 };
 
-const removeQuestion = (questionToRemove) =>
-{
-    try
-    {
+const removeQuestion = (questionToRemove) => {
+    try {
         const data = loadDataQuestion();
 
         // Remove the question with the specified text
         const updatedData = data.filter(question => question.question !== questionToRemove);
 
-        // Write the updated data back to 'questions.json'
         fs.writeFileSync('questions.json', JSON.stringify(updatedData));
         console.log(chalk.bold.green("                                                   **---- Question removed successfully** ----\n\n"));
     }
-    catch (error)
-    {
+    catch (error) {
         console.error('Error removing question');
     }
 };
 
 
-var giveAns = (name, ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10) =>
-{
+var giveAns = (name, ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10) => {
     var totalScore = 0;
 
     var name_data = loadDataQuizAppData();
 
     var duplicateData = name_data.find((data) => data.name === name);
 
-    if (duplicateData)
-    {
+    if (duplicateData) {
         return console.log(chalk.bold.red("\n                                                    ---- **You have already given the test** ----"));
     }
 
     var data = loadDataQuestion();
 
-    for (let i = 0; i < data.length; i++)
-    {
+    for (let i = 0; i < data.length; i++) {
         const correctAns = data[i].correctAns;
         const selectedAns = eval(`ans${i + 1}`);
 
-        if (correctAns === selectedAns)
-        {
+        if (correctAns === selectedAns) {
             totalScore += 5;
         }
 
-        else
-        {
+        else {
             totalScore -= 1;
         }
     }
@@ -156,59 +128,49 @@ var giveAns = (name, ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10
     console.log(chalk.bold.green("\n                                              ---- **For result use getresult command with name** ----"));
 };
 
-var getResult = (name) =>
-{
+var getResult = (name) => {
     var name_data = loadDataQuizAppData();
 
     var personData = name_data.find((data) => data.name === name);
 
-    if (personData)
-    {
+    if (personData) {
         console.log(chalk.bold.blue(`                                                      ---- **${name}'s total score is: ${personData.totalScore}** ----\n`));
         console.log(chalk.bold.green("                             ---- **For getting correct answers of the questions use getans command with name** ----\n"));
         console.log(chalk.bold.green("                                 ---- **For the answer of specific question enter question number (optional)** ----\n"));
     }
 
-    else
-    {
+    else {
         console.log(chalk.bold.red(`                                                      ---- **${name} not found in the data** -----\n`));
     }
 };
 
-var getAnswer = (name, questionnumber) =>
-{
+var getAnswer = (name, questionnumber) => {
     var quiz_data = loadDataQuizAppData();
     var question_data = loadDataQuestion();
 
     var candidateData = quiz_data.find(candidate => candidate.name === name);
 
-    if (!candidateData)
-    {
+    if (!candidateData) {
         console.log(chalk.bold.red("                                                          ---- **You have not given the quiz. Cannot display the answers** ----\n"));
         return;
     }
 
     var question_data;
 
-    if (questionnumber)
-    {
-        if(question_data.length >= questionnumber)
-        {
+    if (questionnumber) {
+        if (question_data.length >= questionnumber) {
             console.log(question_data[questionnumber - 1].question);
             var ca = question_data[questionnumber - 1].correctAns;
             console.log(chalk.bold.green(question_data[questionnumber - 1].options[ca - 1]));
         }
 
-        else
-        {
+        else {
             console.log(chalk.bold.red("                                                                  ---- **Invalid Question Number** ----\n"));
         }
     }
 
-    else
-    {
-        for (let i = 0; i < question_data.length; i++)
-        {
+    else {
+        for (let i = 0; i < question_data.length; i++) {
             console.log(question_data[i].question);
             var ca = question_data[i].correctAns;
             console.log(chalk.bold.green(question_data[i].options[ca - 1]));
@@ -218,74 +180,64 @@ var getAnswer = (name, questionnumber) =>
     console.log(chalk.bold.green("\n\n                               ---- **For leaderboard use getleaderboard command with the number of toppers you want to see (optional)** ----\n"));
 };
 
-var getLeaderboard = (num) =>
-{
-    try
-    {
+var getLeaderboard = (num) => {
+    try {
         var score_data = loadDataQuizAppData();
 
         score_data = _.sortBy(score_data, 'totalScore').reverse();
 
-        if(num)
-        {
+        if (num) {
             console.log(`\n                                                       Top ${num} persons on the leaderboard:\n`);
 
-            for (let i = 0; i < num; i++)
-            {
+            for (let i = 0; i < num; i++) {
                 console.log(chalk.bold.red(`                                                             ${i + 1}. ${score_data[i].name} - Score: ${score_data[i].totalScore}`));
             }
         }
 
-        else
-        {
+        else {
             console.log(`\n                                                       All persons on the leaderboard:\n`);
 
-            for (let i = 0; i < score_data.length; i++)
-            {
+            for (let i = 0; i < score_data.length; i++) {
                 console.log(chalk.bold.red(`                                                             ${i + 1}. ${score_data[i].name} - Score: ${score_data[i].totalScore}`));
             }
         }
     }
 
-    catch (e)
-    {
+    catch (e) {
         console.error("Error reading the data file.");
     }
 };
 
-var getHint=(questionnumber) =>
-{
+var getHint = (questionnumber) => {
     var data = loadDataQuestion();
 
-    if(data.length >= questionnumber)
-    {
+    if (data.length >= questionnumber) {
         console.log(chalk.bold.blue(data[questionnumber - 1].hint));
     }
-    else
-    {
-        console.log(chalk.bold.red('Invalid Question Number')); 
+    else {
+        console.log(chalk.bold.red('Invalid Question Number'));
     }
 
-    
+
     console.log(chalk.bold.green("                                             **---- For giving the answer use giveans command** ----\n"));
     console.log(chalk.bold.green("                                 **---- Before giving the answer enter your name and then give the answers** ----\n\n"));
 
-    
+
 };
 
 // var abc=() =>
 // {
 //     try
 //     {
-//         var score_data = loadDataQuizAppData();
+//         var data = loadDataQuestion();
 
-//         for(let i = 0; i < score_data.length; i++)
+//         for(let i = 0; i < data.length; i++)
 //         {
-//             if(score_data[i].totalScore == 50)
+//             if(data[i].question == "The product of 121 x 0 x 200 x 25 is")
 //             {
-//                 console.log(`Name - ${score_data[i].name} Score - ${score_data[i].totalScore}`);
+//                 console.log(data[i].correctAns);
 //             }
-//         }
+//         }        
 //     }
 
 //     catch (e)
@@ -294,4 +246,4 @@ var getHint=(questionnumber) =>
 //     }
 // };
 
-module.exports = {welcomeMSG, getQuestion, giveAns, getResult, getAnswer, getLeaderboard, getHint, addQuestion, removeQuestion};
+module.exports = { welcomeMSG, getQuestion, giveAns, getResult, getAnswer, getLeaderboard, getHint, addQuestion, removeQuestion};

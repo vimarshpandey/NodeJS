@@ -67,4 +67,4 @@
 
         --question="How many planets are there in our solar system" --option1="1. 5" --option2="2. 6" --option3="3. 7" --option4="4. 8" --correctAns=4 --hint="Hint for question 11"
 
-        --questionToRemove="How many planets are there in out solar system" 
+        --questionToRemove="How many planets are there in our solar system" 
