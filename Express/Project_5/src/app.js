@@ -23,13 +23,12 @@ app.get('', (req, res) =>
 })
 
 
-app.get('/startquiz', (req, res) =>
-{
-    fs.readFile('questions.json', (err, data) =>
-    {
+app.get('/startquiz', (req, res) => {
+    fs.readFile('questions.json', (err, data) => {
         if (err) throw err;
         const jsonData = JSON.parse(data);
-        res.render('startquiz', { jsonData: jsonData });
+        console.log(jsonData[1]['question']); // Print JSON data to console
+        res.render('startquiz', { jsonData: jsonData, title: 'Arcade Quiz' });
     });
 });
 
