@@ -15,6 +15,8 @@ hbs.registerPartials(partialPath);
 
 app.use(express.static(publicDirectoryPath));
 
+const jsonData = JSON.parse(fs.readFileSync('questions.json'));
+
 app.get('', (req, res) =>
 {
     res.render('index',{
@@ -27,17 +29,39 @@ app.get('/startquiz', (req, res) => {
     fs.readFile('questions.json', (err, data) => {
         if (err) throw err;
         const jsonData = JSON.parse(data);
-        console.log(jsonData[1]['question']); // Print JSON data to console
         res.render('startquiz', { jsonData: jsonData, title: 'Arcade Quiz' });
     });
 });
 
-app.get('/result', (req, res) =>
-{
-    res.render('result',{
-        title: 'Arcade Quiz'
-    })
-})
+app.get('/result', (req, res) => {
+    // Extracting URL parameters
+    const name = req.query.hiddenName;
+    const givenAnswers = [];
+    for (const key in req.query) {
+        if (key.startsWith('q')) {
+            givenAnswers.push(req.query[key]);
+        }
+    }
+
+    // Comparing given answers with correct answers
+    let score = 0;
+    jsonData.forEach((question, index) => {
+        if (question.options[question.correctAns - 1] === givenAnswers[index]) {
+            score++;
+        }
+    });
+
+    const percentage = (score / jsonData.length) * 100;
+
+    // Rendering the result page with the score
+    res.render('result', {
+        title: 'Arcade Quiz',
+        name: name,
+        score: score,
+        totalQuestions: jsonData.length,
+        percentage: percentage
+    });
+});
 
 app.get('/about', (req, res) =>
 {
