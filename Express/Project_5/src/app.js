@@ -5,9 +5,11 @@ const hbs = require('hbs');
 
 const app = express();
 
-const publicDirectoryPath = path.join(__dirname, '../public');
-const viewPath = path.join(__dirname, '../templet/views');
-const partialPath = path.join(__dirname, '../templet/partials');
+const port = process.env.PORT||3000;
+
+const publicDirectoryPath = path.join(__dirname, '/public');
+const viewPath = path.join(__dirname, '/templet/views');
+const partialPath = path.join(__dirname, '/templet/partials');
 
 app.set('view engine', 'hbs');
 app.set('views', viewPath);
@@ -70,7 +72,7 @@ app.get('/about', (req, res) =>
     })
 })
 
-app.listen(3000, () =>{
+app.listen(port, () =>{
     console.log("server is up on port 3000");
 })
 
