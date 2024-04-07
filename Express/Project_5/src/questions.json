@@ -8,7 +8,8 @@
             "4. Paris"
         ],
         "correctAns": 2,
-        "hint": "Hint for question 1"
+        "hint": "Hint for question 1",
+        "level": "Easy"
     },
     {
         "question": "What is the capital of France?",
@@ -19,7 +20,8 @@
             "4. Paris"
         ],
         "correctAns": 4,
-        "hint": "Hint for question 2"
+        "hint": "Hint for question 2",
+        "level": "Medium"
     },
     {
         "question": "What is the capital of United States?",
@@ -30,7 +32,8 @@
             "4. Paris"
         ],
         "correctAns": 1,
-        "hint": "Hint for question 3"
+        "hint": "Hint for question 3",
+        "level": "Hard"
     },
     {
         "question": "Which language is not an object oriented pogramming lnguage?",
@@ -41,7 +44,8 @@
             "4. Python"
         ],
         "correctAns": 3,
-        "hint": "Hint for question 4"
+        "hint": "Hint for question 4",
+        "level": "Easy"
     },
     {
         "question": "Which language is not an object oriented pogramming lnguage?",
@@ -52,7 +56,8 @@
             "4. PYthon"
         ],
         "correctAns": 3,
-        "hint": "Hint for question 4"
+        "hint": "Hint for question 4",
+        "level": "Medium"
     },
     {
         "question": "What is the capital of United States?",
@@ -63,6 +68,7 @@
             "4. Paris"
         ],
         "correctAns": 1,
-        "hint": "Hint for question 3"
+        "hint": "Hint for question 3",
+        "level": "Hard"
     }
 ]
