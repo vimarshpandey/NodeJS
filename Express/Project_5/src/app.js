@@ -79,7 +79,7 @@ app.get('/result', (req, res) => {
 
     var duplicateData = name_data.find((data) => data.name === name);
     if (duplicateData) {
-        return res.status(400).json({ error: "You have already given the test." });
+        return res.redirect('/404.hbs');
     }
 
     var updatedData = { name: name, score: score };
