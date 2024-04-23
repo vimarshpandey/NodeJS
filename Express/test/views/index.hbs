@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+    <h1>Orders</h1>
+    <ul>
+        {{#each orders}}
+            <li>
+                <strong>Order ID:</strong> {{_id}}<br>
+                <strong>Product:</strong> {{name}}<br>
+                <strong>Quantity:</strong> {{cost}}<br><br>
+            </li>
+        {{/each}}
+    </ul>
+</body>
+</html>
